@@ -76,6 +76,7 @@ def write_xlsx(file_path: Path, entity_data: dict):
     ws = wb.active
     ws.title = "Data"
 
+    # заголовки столбцов
     ws.append(["Field", "Value"])
 
     for key, value in entity_data.items():
@@ -126,6 +127,7 @@ async def people_worker(session, max_requests: int | None):
             print(f"[people] completed fixed {max_requests} requests")
             return
 
+        # await asyncio.sleep(random.uniform(1.5, 3.5))
         await asyncio.sleep(2)
 
 
@@ -139,11 +141,13 @@ async def starships_worker(session, max_requests: int | None):
             print(f"[starships] completed fixed {max_requests} requests")
             return
 
+        # await asyncio.sleep(random.uniform(1.5, 3.5))
         await asyncio.sleep(2)
 
-
 async def main(max_people_requests: int | None = None, max_starships_requests: int | None = None):
+    #создание клиентской сессии
     async with aiohttp.ClientSession() as session:
+        #корутины(асинхронные функции) работают параллельно
         await asyncio.gather(
             people_worker(session, max_people_requests),
             starships_worker(session, max_starships_requests)
