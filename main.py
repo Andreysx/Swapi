@@ -96,8 +96,8 @@ def write_xlsx(file_path: Path, entity_data: dict):
 async def process_entity(session, entity_type: str, id_min: int, id_max: int):
     """
     Основной процесс обработки:
-    1) получение /entity/id/
-    2) запись TXT + XLSX
+    1) получение http ответа по url
+    2) запись в файл txt или xlsx
     """
     random_id = random.randint(id_min, id_max)
     url = f"{BASE_URL}/{entity_type}/{random_id}/"
