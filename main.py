@@ -35,7 +35,7 @@ def convert_excel_value(value):
     """
     Вспомогательная функция для преобразования типов для xlsx
     """
-
+    #Можно сделать более аккуратно
     if value is None:
         return None
 
