@@ -85,7 +85,7 @@ def save_to_xlsx(file_path: Path, entity_data: dict):
     wb.save(file_path)
 
 
-async def process_entity(session, entity_type: str, id_min: int, id_max: int):
+async def handle_entity(session, entity_type: str, id_min: int, id_max: int):
     """
     Основной процесс обработки:
     1) получение http ответа по url
@@ -117,7 +117,7 @@ async def people_worker(session, max_requests: int | None):
     """Worker(ассинхронная ф-я в цикле) для /people: выполняет запросы до max_requests или бесконечно"""
     count = 0
     while True:
-        await process_entity(session, "people", 1, 100)
+        await handle_entity(session, "people", 1, 100)
         count += 1
 
         if max_requests is not None and count >= max_requests:
@@ -133,7 +133,7 @@ async def starships_worker(session, max_requests: int | None):
     """Worker(ассинхронная ф-я в цикле) для /starships: выполняет запросы до max_requests или бесконечно"""
     count = 0
     while True:
-        await process_entity(session, "starships", 1, 100)
+        await handle_entity(session, "starships", 1, 100)
         count += 1
 
         if max_requests is not None and count >= max_requests:
