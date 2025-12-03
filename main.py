@@ -137,7 +137,7 @@ async def starships_worker(session, max_requests: int | None):
         count += 1
 
         if max_requests is not None and count >= max_requests:
-            logger.info(f"[people] completed fixed {max_requests} requests")
+            logger.info(f"[starships] completed fixed {max_requests} requests")
             return
 
         #ограничение скорости запросов
