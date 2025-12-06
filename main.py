@@ -162,4 +162,7 @@ async def main(max_people_requests: int | None = None, max_starships_requests: i
 
 # Возможность добавления фиксированного количества запросов для каждого из потоков(people_worker, starships_worker)
 if __name__ == "__main__":
+    start = datetime.now()
     asyncio.run(main(max_people_requests=5, max_starships_requests=5))
+    end = datetime.now()
+    logger.info(f"Executing time  {(end-start)}")
